@@ -1,13 +1,19 @@
 use clap::{Parser, Subcommand};
-use commands::{init::SubcommandInit, TemptexCommandRunner};
+use commands::{
+    create::SubcommandCreate, init::SubcommandInit, list::SubcommandList, TemptexCommandRunner,
+};
 
 pub mod commands;
 pub mod config;
 
 #[derive(Subcommand)]
 enum Subcommands {
-    /// Init a new template in the current directory
+    /// Instantiate a new template in the current directory
     Init(SubcommandInit),
+    /// List all saved templates
+    List(SubcommandList),
+    /// Create a new template
+    Create(SubcommandCreate),
 }
 
 #[derive(Parser)]
@@ -24,6 +30,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     match args.command {
         Subcommands::Init(init_args) => init_args.run(config),
+        Subcommands::List(list_args) => list_args.run(config),
+        Subcommands::Create(create_args) => create_args.run(config),
     }?;
 
     Ok(())
