@@ -11,12 +11,39 @@ pub struct Template {
     header_files: Vec<String>,
 }
 
+impl Template {
+    pub fn name(&self) -> &str {
+        &self.name
+    }
+    pub fn template_path(&self) -> &str {
+        &self.template_path
+    }
+    pub fn header_files(&self) -> &[String] {
+        &self.header_files
+    }
+}
+
 #[derive(Serialize, Deserialize)]
 pub struct Config {
     templates: Vec<Template>,
     latex_command: String,
     aux_dir: String,
     pdf_dir: String,
+}
+
+impl Config {
+    pub fn templates(&self) -> &[Template] {
+        &self.templates
+    }
+    pub fn latex_command(&self) -> &str {
+        &self.latex_command
+    }
+    pub fn aux_dir(&self) -> &str {
+        &self.aux_dir
+    }
+    pub fn pdf_dir(&self) -> &str {
+        &self.pdf_dir
+    }
 }
 
 impl Default for Config {

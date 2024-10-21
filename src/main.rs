@@ -19,8 +19,8 @@ struct TemptexArgs {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let config = config::load_config()?;
     let args = TemptexArgs::parse();
+    let config = config::load_config()?;
 
     match args.command {
         Subcommands::Init(init_args) => init_args.run(config),
