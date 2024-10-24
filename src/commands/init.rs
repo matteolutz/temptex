@@ -54,7 +54,7 @@ impl SubcommandInit {
         )?;
         writeln!(file, "SRC = {}", template.name())?;
 
-        writeln!(file, "{}.pdf: $(SRC).tex", template.name())?;
+        writeln!(file, "$(SRC).pdf: $(SRC).tex")?;
         writeln!(file, "\t$(LATEX) $(LATEX_ARGS) $(SRC)")?;
         writeln!(file, "\t$(LATEX) $(LATEX_ARGS) $(SRC)")?;
 
